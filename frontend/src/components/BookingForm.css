@@ -1,0 +1,226 @@
+/* General Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+.my-appointments-button {
+  position: absolute;
+  top: 150px;
+  right: 50px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.my-appointments-button:hover {
+  background-color: #0bb533;
+}
+
+
+body {
+  background: linear-gradient(135deg, #ff7a00, #ff4b2b, #ff477e, #d13099, #6e00ff);
+  background-size: 400% 400%;
+  animation: gradientBackground 10s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 16px;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Main Title */
+.booking-form-title {
+  font-size: 3rem;
+  color: #000000;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Form Container */
+.booking-form-container {
+  width: 100%;
+  max-width: 650px;
+  background-color: #fff;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+/* Form Wrapper */
+.booking-form-wrapper {
+  text-align: center;
+}
+
+.booking-form-subtitle {
+  font-size: 1.2rem;
+  color: #34495e;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+/* Form Styles */
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Message Styles */
+.booking-form-message {
+  padding: 1rem;
+  margin: 1.2rem 0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.success {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.error {
+  background-color: #560c04;
+  color: #ffff;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 1.2rem;
+  color: #34495e;
+  font-weight: 600;
+}
+
+.form-group input {
+  padding: 1rem;
+  font-size: 1rem;
+  border: 2px solid #bdc3c7;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-group input:focus {
+  border-color: #3498db;
+}
+
+.form-group input::placeholder {
+  color: #7f8c8d;
+}
+
+/* Time Slot Popup */
+.time-slot-popup {
+  position: absolute;
+  top: 60%;
+  left: 0;
+  right: 0;
+  background-color: #f8f5f5;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 10 8px 30px rgba(0, 0, 0, 0.716);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-height: 250px;
+  overflow-y: auto;
+  transition: transform 0.3s ease-in-out;
+  animation: popupAnimation 0.3s ease-out;
+}
+
+@keyframes popupAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.time-slot {
+  background-color: #030649;
+  color: white;
+  font-size: 1rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+  margin: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.time-slot:hover {
+  background-color: #283879;
+  transform: translateY(-5px);
+}
+
+.time-slot:active {
+  transform: translateY(0);
+  background-color: #ada4d4;
+}
+
+/* Submit Button */
+.booking-form-button {
+  padding: 1rem;
+  background-color: #27ae60;
+  color: white;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.booking-form-button:hover {
+  background-color: #2ecc71;
+}
+
+.booking-form-button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .booking-form-container {
+    padding: 1.5rem;
+  }
+  .booking-form-title {
+    font-size: 2rem;
+  }
+  .form-group input {
+    font-size: 0.9rem;
+  }
+}
