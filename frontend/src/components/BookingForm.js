@@ -22,9 +22,10 @@ const BookingForm = () => {
 
   useEffect(() => {
     // Fetch all booked slots on page load
-    axios.get("http://localhost:5000/api/booked-slots")
-      .then(response => setBookedSlots(response.data))
-      .catch(error => console.error("Error fetching booked slots:", error));
+    axios
+      .get("http://localhost:5000/api/booked-slots")
+      .then((response) => setBookedSlots(response.data))
+      .catch((error) => console.error("Error fetching booked slots:", error));
 
     // Generate time slots (9:00 AM to 5:00 PM in 30-minute increments)
     const times = [];
@@ -34,7 +35,9 @@ const BookingForm = () => {
     while (startTime <= endTime) {
       let hours = startTime.getHours();
       let minutes = startTime.getMinutes();
-      let formattedTime = `${hours % 12 || 12}:${minutes === 0 ? "00" : minutes} ${hours < 12 ? "AM" : "PM"}`;
+      let formattedTime = `${hours % 12 || 12}:${
+        minutes === 0 ? "00" : minutes
+      } ${hours < 12 ? "AM" : "PM"}`;
       times.push(formattedTime);
       startTime.setMinutes(startTime.getMinutes() + 30); // Increment by 30 minutes
     }
@@ -76,7 +79,8 @@ const BookingForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/appointments", form
+        "http://localhost:5000/api/appointments",
+        form
       );
 
       if (response && response.data) {
@@ -93,11 +97,22 @@ const BookingForm = () => {
 
   const handleDateChange = (e) => {
     const selectedDate = e.target.value;
+    const day = new Date(selectedDate).getDay(); // Get the day of the week (0 = Sunday, 6 = Saturday)
+
+    if (day === 0 || day === 6) {
+      // Disable Saturday (6) and Sunday (0)
+      showError("Weekends are not available. Please select a weekday.");
+      setForm({ ...form, date: "" }); // Clear the selected date
+      return;
+    }
+
     setForm({ ...form, date: selectedDate });
 
     // Get booked slots for the selected date
     const bookedForDate = bookedSlots[selectedDate] || [];
-    const availableForDate = availableTimes.filter(time => !bookedForDate.includes(time));
+    const availableForDate = availableTimes.filter(
+      (time) => !bookedForDate.includes(time)
+    );
     setAvailableTimes(availableForDate);
   };
 
@@ -119,7 +134,9 @@ const BookingForm = () => {
 
     // Re-calculate available times for the selected date
     const bookedForDate = bookedSlots[date] || [];
-    const availableForDate = availableTimes.filter(time => !bookedForDate.includes(time));
+    const availableForDate = availableTimes.filter(
+      (time) => !bookedForDate.includes(time)
+    );
     setAvailableTimes(availableForDate);
   };
 
@@ -134,7 +151,10 @@ const BookingForm = () => {
   return (
     <div className="booking-form-container">
       <div className="booking-form-wrapper">
-        <button className="my-appointments-button" onClick={() => navigate("/myappointment")}>
+        <button
+          className="my-appointments-button"
+          onClick={() => navigate("/myappointment")}
+        >
           My Appointments
         </button>
 
@@ -158,7 +178,7 @@ const BookingForm = () => {
                 if (validateName(e.target.value) || e.target.value === "") {
                   setForm({ ...form, name: e.target.value });
                 } else {
-                  showError("❌ Name can only contain letters and spaces.");
+                  showError("Name can only contain letters and spaces.");
                 }
               }}
               placeholder="Enter your name"
@@ -176,7 +196,7 @@ const BookingForm = () => {
                 if (/^\d*$/.test(e.target.value)) {
                   setForm({ ...form, contact: e.target.value });
                 } else {
-                  showError("❌ Contact must contain only numbers.");
+                  showError("Contact must contain only numbers.");
                 }
               }}
               placeholder="Enter your contact number"
@@ -194,7 +214,7 @@ const BookingForm = () => {
                 if (validateReason(e.target.value)) {
                   setForm({ ...form, reason: e.target.value });
                 } else {
-                  showError("❌ Special characters are not allowed.");
+                  showError("Special characters are not allowed.");
                 }
               }}
               placeholder="Booking Reason"
@@ -211,6 +231,7 @@ const BookingForm = () => {
               onChange={handleDateChange}
               required
               min={new Date().toISOString().split("T")[0]} // Disable past dates
+              onkeydown={(e) => e.preventDefault()} // Prevent manual typing
             />
           </div>
 

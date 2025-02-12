@@ -7,8 +7,8 @@
 }
 .my-appointments-button {
   position: absolute;
-  top: 150px;
-  right: 30px;
+  top: 130px;
+  right: 20px;
   background-color: #28a745;
   color: white;
   border: none;
@@ -110,8 +110,8 @@
 }
 
 .error {
-  background-color: #560c04;
-  color: #ffff;
+  
+  color: #da1212;
 }
 
 /* Form Group */
