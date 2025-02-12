@@ -79,7 +79,7 @@ I    mport the provided SQL file (appointment_db.sql)
 
 Start the Server
 
-    npm star
+    npm stat
 The backend will be running at http://localhost:5000.
 
 Run the Front-End
