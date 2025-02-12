@@ -8,7 +8,7 @@
 .my-appointments-button {
   position: absolute;
   top: 150px;
-  right: 50px;
+  right: 30px;
   background-color: #28a745;
   color: white;
   border: none;
@@ -23,18 +23,7 @@
 }
 
 
-body {
-  background: linear-gradient(135deg, #ff7a00, #ff4b2b, #ff477e, #d13099, #6e00ff);
-  background-size: 400% 400%;
-  animation: gradientBackground 10s ease infinite;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  font-size: 16px;
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-}
+
 
 @keyframes gradientBackground {
   0% {
@@ -64,12 +53,27 @@ body {
 .booking-form-container {
   width: 100%;
   max-width: 650px;
-  background-color: #fff;
-  padding: 2.5rem;
+  padding: 40px;
+  background: #ffffff; /* White background for the form */
   border-radius: 15px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-in-out;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #333;
+  animation: zoomIn 0.8s ease-in-out; /* Smooth zoom-in effect */
+  z-index: 50; /* Ensure it's on top */
   position: relative;
+}
+
+/* Zoom-In Animation */
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95); /* Slightly smaller at the start */
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1); /* Normal size at the end */
+  }
 }
 
 /* Form Wrapper */
@@ -140,25 +144,45 @@ body {
 .form-group input::placeholder {
   color: #7f8c8d;
 }
+.logout-button {
+  position: fixed; /* Fixed positioning to place the button at the top right of the page */
+  top: 20px; /* Adjust as needed */
+  right: 30px; /* Positions it on the top right */
+  padding: 8px 16px;
+  background-color: #f44336; /* Red background */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  
+  font-size: 16px;
+  z-index: 1000; /* Ensure the button stays on top */
+}
+
+.logout-button:hover {
+  background-color: #d32f2f; /* Darker red on hover */
+}
 
 /* Time Slot Popup */
 .time-slot-popup {
-  position: absolute;
-  top: 60%;
-  left: 0;
-  right: 0;
+  position: fixed;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: #f8f5f5;
   padding: 1.5rem;
   border-radius: 15px;
-  box-shadow: 10 8px 30px rgba(0, 0, 0, 0.716);
+  box-shadow: 10px 8px 30px rgba(0, 0, 0, 0.716);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   max-height: 250px;
+  width: 100%;
+  max-width: 650px;
   overflow-y: auto;
-  transition: transform 0.3s ease-in-out;
-  animation: popupAnimation 0.3s ease-out;
+  
 }
+
 
 @keyframes popupAnimation {
   0% {

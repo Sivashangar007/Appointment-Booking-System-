@@ -123,11 +123,23 @@ const BookingForm = () => {
     setAvailableTimes(availableForDate);
   };
 
+  const handleLogout = () => {
+    // Clear any session/local storage items (if needed)
+    localStorage.removeItem("user"); // Or sessionStorage.removeItem("user") if using session storage
+
+    // Redirect to login page
+    navigate("/");
+  };
+
   return (
     <div className="booking-form-container">
       <div className="booking-form-wrapper">
         <button className="my-appointments-button" onClick={() => navigate("/myappointment")}>
           My Appointments
+        </button>
+
+        <button className="logout-button" onClick={handleLogout}>
+          Logout
         </button>
 
         <h1>Appointment Booking</h1>

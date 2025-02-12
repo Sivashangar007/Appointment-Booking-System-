@@ -7,14 +7,12 @@ const MyAppointments = () => {
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate();
 
-  // Function to handle appointment cancellation
   const handleCancel = (id) => {
     axios
-      .delete(`http://localhost:5000/api/appointments/${id}`) // Correct URL for delete request
+      .delete(`http://localhost:5000/api/appointments/${id}`)
       .then(() => {
-        // Remove the canceled appointment from state
         setAppointments(appointments.filter((appointment) => appointment.id !== id));
       })
       .catch((err) => {
@@ -28,7 +26,10 @@ const MyAppointments = () => {
       .get("http://localhost:5000/api/booked-slots")
       .then((response) => {
         const data = Object.entries(response.data).flatMap(([date, slots]) =>
-          slots.map((slot) => ({ ...slot, date }))
+          slots.map((slot) => ({
+            ...slot,
+            date: typeof date === "object" && date.type === "Buffer" ? String.fromCharCode(...date.data) : date,
+          }))
         );
         setAppointments(data);
         setLoading(false);
@@ -42,22 +43,18 @@ const MyAppointments = () => {
 
   return (
     <div className="appointments-container">
+      <button className="logout-button" onClick={() => navigate("/")}>
+        Logout
+      </button>
       <h1>My Appointments</h1>
-
-      {/* Button Outside the Table */}
       <div className="outside-button-container">
         <button className="book-appointment-btn" onClick={() => navigate("/booking")}>
           Book New Appointment
         </button>
       </div>
-
       {loading && <p className="loading">Loading appointments...</p>}
       {error && <p className="error">{error}</p>}
-
-      {!loading && appointments.length === 0 && (
-        <p className="no-appointments">No appointments found.</p>
-      )}
-
+      {!loading && appointments.length === 0 && <p className="no-appointments">No appointments found.</p>}
       {appointments.length > 0 && (
         <table className="appointments-table">
           <thead>
@@ -70,7 +67,7 @@ const MyAppointments = () => {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text">
             {appointments.map((appointment, index) => (
               <tr key={index}>
                 <td>{appointment.name}</td>
@@ -79,10 +76,7 @@ const MyAppointments = () => {
                 <td>{appointment.time}</td>
                 <td>{appointment.reason}</td>
                 <td>
-                  <button
-                    className="cancel-btn"
-                    onClick={() => handleCancel(appointment.id)}
-                  >
+                  <button className="cancel-btn" onClick={() => handleCancel(appointment.id)}>
                     Cancel
                   </button>
                 </td>

@@ -21,17 +21,35 @@ router.post("/appointments", async (req, res) => {
 // GET route to fetch all booked slots
 router.get("/booked-slots", async (req, res) => {
   try {
+    // Fetch all appointments from the database
     const appointments = await Appointment.findAll();
+
+    // Group appointments by date
     const grouped = {};
     appointments.forEach((a) => {
-      if (!grouped[a.date]) grouped[a.date] = [];
-      grouped[a.date].push(a);
+      const formattedDate = a.date;  // Directly use the 'date' value as a string
+      
+      if (!grouped[formattedDate]) grouped[formattedDate] = [];
+      grouped[formattedDate].push({
+        id: a.id,
+        name: a.name,
+        contact: a.contact,
+        date: formattedDate,
+        time: a.time,
+        reason: a.reason,
+      });
     });
+
+    // Send the grouped appointments as a JSON response
     res.json(grouped);
   } catch (error) {
+    // Handle errors and send a response
+    console.error(error);
     res.status(500).json({ message: "Error fetching booked slots." });
   }
 });
+
+
 
 // GET route to fetch available dates
 router.get("/available-dates", async (req, res) => {

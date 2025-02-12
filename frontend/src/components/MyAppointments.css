@@ -9,9 +9,31 @@
   transition: max-height 0.3s ease, padding 0.3s ease;
   overflow: hidden;
   max-height: 10; /* Initially collapsed */
+  animation: zoomIn 0.8s ease-in-out; /* Smooth zoom-in effect */
+  z-index: 50; /* Ensure it's on top */
+  position: relative;
 }
 .outside-button-container {
   margin-bottom: 20px;
+}
+
+.logout-button {
+  position: fixed; /* Keeps it fixed in the top-right corner */
+  top: 10px; /* Adjust top position as needed */
+  right: 10px; /* Adjust right position as needed */
+  padding: 8px 16px;
+  background-color: #f44336; /* Red background */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 1000; /* Ensure it's always on top of other elements */
+  transition: all 0.3s ease; /* Smooth transition */
+}
+
+.logout-button:hover {
+  background-color: #d32f2f; /* Darker red on hover */
 }
 
 .book-appointment-btn {
@@ -19,11 +41,9 @@
   color: white;
   padding: 10px 15px;
   border: none;
-  
   cursor: pointer;
   font-size: 16px;
   border-radius: 5px;
-
 }
 
 .book-appointment-btn:hover {
@@ -61,7 +81,7 @@ h1 {
 
 .appointments-table th,
 .appointments-table td {
-  border: 1px solid #ddd;
+  border: 1px solid #140202;
   padding: 15px;
   text-align: left;
   font-family: 'Roboto', sans-serif;
@@ -74,7 +94,8 @@ h1 {
 }
 
 .appointments-table td {
-  background-color: #fff;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 .appointments-table tr:hover {
@@ -93,7 +114,7 @@ h1 {
 .appointments-table td,
 .appointments-table th {
   padding: 12px 15px;
-  border: 1px solid #ddd;
+  border: 1px solid #100101;
   text-align: left;
 }
 
@@ -115,7 +136,6 @@ h1 {
   color: #fcfafa;
   font-weight: bold;
   text-align: center;
-
   margin-top: 15px;
 }
 
@@ -130,6 +150,10 @@ h1 {
   color: #777;
   font-size: 1.1rem;
   margin-top: 20px;
+}
+
+.text {
+  color: #100101;
 }
 
 @media (max-width: 768px) {
