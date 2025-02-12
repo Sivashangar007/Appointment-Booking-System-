@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./BookingForm.css";
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
 
 const BookingForm = () => {
   const navigate = useNavigate();
@@ -147,6 +148,7 @@ const BookingForm = () => {
     // Redirect to login page
     navigate("/");
   };
+  
 
   return (
     <div className="booking-form-container">

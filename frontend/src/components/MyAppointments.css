@@ -1,5 +1,6 @@
 /* MyAppointments.css */
 .appointments-container {
+  width: 90%;
   max-width: 1000px;
   margin: 30px auto;
   padding: 30px;
@@ -8,34 +9,39 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: max-height 0.3s ease, padding 0.3s ease;
   overflow: hidden;
-  max-height: 10; /* Initially collapsed */
   animation: zoomIn 0.8s ease-in-out; /* Smooth zoom-in effect */
   z-index: 50; /* Ensure it's on top */
   position: relative;
 }
+
 .outside-button-container {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+/* Logout Button */
 .logout-button {
-  position: fixed; /* Keeps it fixed in the top-right corner */
-  top: 10px; /* Adjust top position as needed */
-  right: 10px; /* Adjust right position as needed */
+  position: fixed;
+  top: 10px;
+  right: 10px;
   padding: 8px 16px;
-  background-color: #f44336; /* Red background */
+  background-color: #f44336;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  z-index: 1000; /* Ensure it's always on top of other elements */
-  transition: all 0.3s ease; /* Smooth transition */
+  z-index: 1000;
+  transition: all 0.3s ease;
 }
 
 .logout-button:hover {
-  background-color: #d32f2f; /* Darker red on hover */
+  background-color: #d32f2f;
 }
 
+/* Book Appointment Button */
 .book-appointment-btn {
   background-color: #28a745;
   color: white;
@@ -50,6 +56,7 @@
   background-color: #218838;
 }
 
+/* Section Title */
 .appointments-container-header {
   font-size: 1.5rem;
   font-weight: bold;
@@ -62,6 +69,7 @@
   transition: background-color 0.3s ease;
 }
 
+/* Main Title */
 h1 {
   font-size: 3rem;
   color: #000000;
@@ -71,6 +79,12 @@ h1 {
   text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
   letter-spacing: 2px;
   text-transform: uppercase;
+}
+
+/* Table Container */
+.appointments-table-container {
+  width: 100%;
+  overflow-x: auto;
 }
 
 .appointments-table {
@@ -111,13 +125,6 @@ h1 {
   background-color: #ffffff;
 }
 
-.appointments-table td,
-.appointments-table th {
-  padding: 12px 15px;
-  border: 1px solid #100101;
-  text-align: left;
-}
-
 .cancel-btn {
   background-color: #ff4d4d;
   color: white;
@@ -156,15 +163,53 @@ h1 {
   color: #100101;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
   .appointments-container {
-    padding: 20px;
+    padding: 15px;
   }
 
   .appointments-table th,
   .appointments-table td {
-    font-size: 14px;
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  /* Responsive Layout for Buttons */
+  .outside-button-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .logout-button {
+    with:20px;
+    position: fixed;
+  }
+  .book-appointment-btn{
+    width: 100%;
+    margin-bottom: 0px;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Adjust layout for smaller screens */
+  .appointments-container {
+    width: 90%;
     padding: 10px;
+  }
+
+  .appointments-table th,
+  .appointments-table td {
+    font-size: 10px;
+    padding: 6px;
+  }
+
+  .book-appointment-btn, .logout-button {
+    font-size: 14px;
+    padding: 8px 12px;
   }
 
   h1 {

@@ -5,6 +5,7 @@
   padding: 0;
   font-family: 'Poppins', sans-serif;
 }
+
 .password-rules {
   margin-top: 5px;
   font-size: 12px;
@@ -172,6 +173,8 @@ body {
 @media (max-width: 768px) {
   .register-form-container {
     padding: 1.5rem;
+    width: 400px;
+    height: 650px;
   }
   .register-form-title {
     font-size: 2rem;
@@ -179,4 +182,24 @@ body {
   .form-group input {
     font-size: 0.9rem;
   }
+}
+
+/* Logout Button - Fixed in Top Right Corner */
+.logout-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 8px 16px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #d32f2f;
 }
